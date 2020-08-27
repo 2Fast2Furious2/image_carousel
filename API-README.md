@@ -12,19 +12,18 @@
 
 ```json
     {
-      "place": "id Number",
+      "placeID": "id Number",
       "image": "image URL",
       "name": "String",
       "description": "String",
-      "rate": "String",
-      "avgRating": "String",
-      "numberOfRatings": "String",
-      "avgRating": "String",
-      "wasLiked": "String",
+      "rate": "Number",
+      "avgRating": "Number",
+      "numberOfRatings": "Number",
+      "avgRating": "Number",
+      "wasLiked": "Boolean",
       "posted": "YYYY-MM-MM",
       "googleMap": "String location",
       "category": "String",
-      "cost": "Number",
       "superhost": "String"
     }
 ```
@@ -38,19 +37,18 @@
 
 ```json
     {
-      "place": "id Number",
+      "placeID": "id Number",
       "image": "image URL",
       "name": "String",
       "description": "String",
-      "rate": "String",
-      "avgRating": "String",
-      "numberOfRatings": "String",
-      "avgRating": "String",
-      "wasLiked": "String",
+      "rate": "Number",
+      "avgRating": "Number",
+      "numberOfRatings": "Number",
+      "avgRating": "Number",
+      "wasLiked": "Boolean",
       "posted": "YYYY-MM-MM",
       "googleMap": "String location",
       "category": "String",
-      "cost": "Number",
       "superhost": "String"
     }
 ```
@@ -68,19 +66,18 @@
 
 ```json
     {
-      "place": "id Number",
+      "placeID": "id Number",
       "image": "image URL",
       "name": "String",
       "description": "String",
-      "rate": "String",
-      "avgRating": "String",
-      "numberOfRatings": "String",
-      "avgRating": "String",
-      "wasLiked": "String",
+      "rate": "Number",
+      "avgRating": "Number",
+      "numberOfRatings": "Number",
+      "avgRating": "Number",
+      "wasLiked": "Boolean",
       "posted": "YYYY-MM-MM",
       "googleMap": "String location",
       "category": "String",
-      "cost": "Number",
       "superhost": "String"
     }
 ```
@@ -106,19 +103,18 @@
 
 ```json
     {
-      "place": "id Number",
+      "placeID": "id Number",
       "image": "image URL",
       "name": "String",
       "description": "String",
-      "rate": "String",
-      "avgRating": "String",
-      "numberOfRatings": "String",
-      "avgRating": "String",
-      "wasLiked": "String",
+      "rate": "Number",
+      "avgRating": "Number",
+      "numberOfRatings": "Number",
+      "avgRating": "Number",
+      "wasLiked": "Boolean",
       "posted": "YYYY-MM-MM",
       "googleMap": "String location",
       "category": "String",
-      "cost": "Number",
       "superhost": "String"
 
     }
