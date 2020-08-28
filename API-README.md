@@ -1,32 +1,57 @@
 ## Server API
 
 ### Get place info
-  * GET `/api/place/:id`
+  * GET `/api/moreplaces/:id`
 
 **Path Parameters:**
-  * `id` place id
+  * `id` id of place to return related 12 places
 
 **Success Status Code:** `200`
 
 **Returns:** JSON
 
 ```json
-    {
-      "placeID": "id Number",
-      "image": "image URL",
-      "name": "String",
-      "description": "String",
-      "rate": "Number",
-      "avgRating": "Number",
-      "numberOfRatings": "Number",
-      "avgRating": "Number",
-      "wasLiked": "Boolean",
-      "posted": "YYYY-MM-MM",
-      "googleMap": "String location",
-      "category": "String",
-      "superhost": "String"
-    }
+    [ {
+        "placeID": "id Number",
+        "image": "image URL",
+        "name": "String",
+        "description": "String",
+        "rate": "Number",
+        "avgRating": "Number",
+        "numberOfRatings": "Number",
+        "avgRating": "Number",
+        "wasLiked": "Boolean",
+        "posted": "YYYY-MM-MM",
+        "longitude": "String location",
+        "latitude": "String location",
+        "category": "String",
+        "superhost": "String",
+        "placeURL": "Link URL to place"
+
+     }, ]
 ```
+
+
+### Get place info
+  * GET `/api/liked/:id`
+
+**Path Parameters:**
+  * `id` id of place to return lists of liked places
+
+**Success Status Code:** `200`
+
+**Returns:** JSON
+
+```json
+    [ {
+        "placeID": "id Number",
+        "image": "image URL",
+        "listName": "String",
+        "dates": "String"
+     }, ]
+
+
+
 
 ### Add place
   * POST `/api/place`
@@ -37,21 +62,39 @@
 
 ```json
     {
-      "placeID": "id Number",
-      "image": "image URL",
-      "name": "String",
-      "description": "String",
-      "rate": "Number",
-      "avgRating": "Number",
-      "numberOfRatings": "Number",
-      "avgRating": "Number",
-      "wasLiked": "Boolean",
-      "posted": "YYYY-MM-MM",
-      "googleMap": "String location",
-      "category": "String",
-      "superhost": "String"
+        "placeID": "id Number",
+        "image": "image URL",
+        "name": "String",
+        "description": "String",
+        "rate": "Number",
+        "avgRating": "Number",
+        "numberOfRatings": "Number",
+        "avgRating": "Number",
+        "wasLiked": "Boolean",
+        "posted": "YYYY-MM-MM",
+        "longilat": "String location",
+        "category": "String",
+        "superhost": "String",
+        "placeURL": "Link URL to place"
     }
 ```
+
+
+### Add place
+  * POST `/api/liked`
+
+**Success Status Code:** `201`
+
+**Request Body**: Expects JSON with the following keys.
+
+```json
+    {
+        "placeID": "id Number",
+        "image": "image URL",
+        "listName": "String",
+        "dates": "String"
+    }
+
 
 
 ### Update place info
@@ -66,19 +109,20 @@
 
 ```json
     {
-      "placeID": "id Number",
-      "image": "image URL",
-      "name": "String",
-      "description": "String",
-      "rate": "Number",
-      "avgRating": "Number",
-      "numberOfRatings": "Number",
-      "avgRating": "Number",
-      "wasLiked": "Boolean",
-      "posted": "YYYY-MM-MM",
-      "googleMap": "String location",
-      "category": "String",
-      "superhost": "String"
+        "placeID": "id Number",
+        "image": "image URL",
+        "name": "String",
+        "description": "String",
+        "rate": "Number",
+        "avgRating": "Number",
+        "numberOfRatings": "Number",
+        "avgRating": "Number",
+        "wasLiked": "Boolean",
+        "posted": "YYYY-MM-MM",
+        "longilat": "String location",
+        "category": "String",
+        "superhost": "String",
+        "placeURL": "Link URL to place"
     }
 ```
 
@@ -89,6 +133,16 @@
   * `id` place id
 
 **Success Status Code:** `204`
+
+
+### Delete place
+  * DELETE `/api/liked/:id`
+
+**Path Parameters:**
+  * `id` place id
+
+**Success Status Code:** `204`
+
 
 ### Add image to paces
   * POST `/api/place/:placeId/images`
@@ -103,19 +157,20 @@
 
 ```json
     {
-      "placeID": "id Number",
-      "image": "image URL",
-      "name": "String",
-      "description": "String",
-      "rate": "Number",
-      "avgRating": "Number",
-      "numberOfRatings": "Number",
-      "avgRating": "Number",
-      "wasLiked": "Boolean",
-      "posted": "YYYY-MM-MM",
-      "googleMap": "String location",
-      "category": "String",
-      "superhost": "String"
+        "placeID": "id Number",
+        "image": "image URL",
+        "name": "String",
+        "description": "String",
+        "rate": "Number",
+        "avgRating": "Number",
+        "numberOfRatings": "Number",
+        "avgRating": "Number",
+        "wasLiked": "Boolean",
+        "posted": "YYYY-MM-MM",
+        "longilat": "String location",
+        "category": "String",
+        "superhost": "String",
+        "placeURL": "Link URL to place"
 
     }
 ```
