@@ -24,4 +24,5 @@ coverage
 build/
 dist/
 client/
+csvdata/
 

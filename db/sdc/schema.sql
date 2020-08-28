@@ -13,7 +13,6 @@ CREATE TABLE place (
   numberOfRatings int NOT NULL,
   place_image varchar(255) NOT NULL,
   rate decimal(10, 2) NOT NULL,
-  avgRating decimal(10, 2) NOT NULL,
   wasLiked boolean NOT NULL,
   postedDate date NOT NULL,
   longitude varchar(255) NOT NULL,
