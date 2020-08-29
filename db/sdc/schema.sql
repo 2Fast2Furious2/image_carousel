@@ -24,9 +24,9 @@ CREATE TABLE place (
 
 
 CREATE TABLE relatedPlaces (
-  id int NOT NULL AUTO_INCREMENT,
-  placeID int NOT NULL,
-  PRIMARY KEY (ID)
+  primaryPlaceID int NOT NULL,
+  relatedPlaceID int NOT NULL,
+  -- PRIMARY KEY (ID)
   -- foreign key(placeID) references places(id)
 );
 
