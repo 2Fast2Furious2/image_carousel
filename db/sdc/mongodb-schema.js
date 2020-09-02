@@ -9,24 +9,35 @@ db.once('open', () => {
 
 const placesSchema = new mongoose.Schema({
 
-  placeID: Number,
+  placeID: {
+    type: Number,
+    required: true
+  },
   image: String,
   name: String,
   description: String,
   rate: Number,
   avgRating: Number,
-  numberOfRatings: Number,
+  numberOfRatings:  {
+    type: Number,
+    default: 0
+  },
   avgRating: Number,
   wasLiked: Boolean,
   posted: Date,
   longitude: String,
   latitude: String,
   category: String,
-  superhost: Boolean,
+  superhost: {
+    type: Boolean,
+    default: false
+  },
   placeURL: String,
   relatedPlaces: Array
 
 });
+
+//csv with giant stringified array and write a mongo command in javascript that will turn the stringified arrays into actual arrays or directly import to mongo with the driver (quotes in a csv avoid commas)
 
 const likedListSchema = new mongoose.Schema({
 

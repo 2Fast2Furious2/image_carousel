@@ -71,6 +71,19 @@ const printHeapStats = () => {
 
 writeNTimes = (writer, min, max, callback) => {
 
+  var relatedPlaceID1 = Math.ceil(Math.random()*max);
+  var relatedPlaceID2 = Math.ceil(Math.random()*max);
+  var relatedPlaceID3 = Math.ceil(Math.random()*max);
+  var relatedPlaceID4 = Math.ceil(Math.random()*max);
+  var relatedPlaceID5 = Math.ceil(Math.random()*max);
+  var relatedPlaceID6 = Math.ceil(Math.random()*max);
+  var relatedPlaceID7 = Math.ceil(Math.random()*max);
+  var relatedPlaceID8 = Math.ceil(Math.random()*max);
+  var relatedPlaceID9 = Math.ceil(Math.random()*max);
+  var relatedPlaceID10 = Math.ceil(Math.random()*max);
+  var relatedPlaceID11 = Math.ceil(Math.random()*max);
+  var relatedPlaceID12 = Math.ceil(Math.random()*max);
+
   const writeFile = () => {
     let ok = true;
 
@@ -89,7 +102,8 @@ writeNTimes = (writer, min, max, callback) => {
         dataString += `${longitude[min % 7]},`;
         dataString += `${latitude[min % 6]},`;
         dataString += `${category[min % 7]},`;
-        dataString += `${superHost[min % 2]}`;
+        dataString += `${superHost[min % 2]},`;
+        dataString += `"[${relatedPlaceID2},${relatedPlaceID2},${relatedPlaceID3},${relatedPlaceID4},${relatedPlaceID5},${relatedPlaceID6},${relatedPlaceID7},${relatedPlaceID8},${relatedPlaceID9},${relatedPlaceID10},${relatedPlaceID11},${relatedPlaceID12}]"`;
         dataString += `\n`;
 
       if (min % max === 0) {
@@ -108,9 +122,9 @@ writeNTimes = (writer, min, max, callback) => {
 }
 
 
-const writeStream = fs.createWriteStream('./csvdata/10mpostgresdata.csv')
+const writeStream = fs.createWriteStream('./csvdata/mongodb.csv')
 
-const line1 = 'id,name,description,avgRating,numratings,image,rate,wasLiked,postedDate,longitude,latitude,category,superHost\n';
+const line1 = 'id,name,description,avgRating,numratings,image,rate,wasLiked,postedDate,longitude,latitude,category,superHost,relatedPlaces\n';
 writeStream.write(line1);
 writeNTimes(writeStream, 1, 10000000, ()=>{
   console.log('written!')

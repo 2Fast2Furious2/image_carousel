@@ -1,18 +1,6 @@
 
 const fs = require('fs');
 
-
-
-var relatedPlaceID = [3,456,7895,34567,3225,35006,486974,596,38694];
-
-const numratings = [51, 130, 255, 42, 85, 352];
-
-
-
-const rate = [425, 623, 89, 123, 342, 122, 456, 324, 144, 126];
-
-
-
 writeNTimes = (writer, min, max, callback) => {
 
   const writeFile = () => {
@@ -63,10 +51,12 @@ writeNTimes = (writer, min, max, callback) => {
 }
 
 
-const writeStream = fs.createWriteStream('./csvdata/120mpostgresdata.csv')
+const writeStream = fs.createWriteStream('./csvdata/120mpostgresdata-utf8.csv')
 
 const line1 = 'primaryPlaceID,relatedPlaceID\n';
 writeStream.write(line1);
-writeNTimes(writeStream, 1, 10000, ()=>{
+writeNTimes(writeStream, 1, 10000000, ()=>{
   console.log('written!')
 })
+
+//ascii
