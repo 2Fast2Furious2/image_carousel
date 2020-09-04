@@ -9,7 +9,7 @@ db.once('open', () => {
 
 const placesSchema = new mongoose.Schema({
 
-  placeID: {
+  id: {
     type: Number,
     required: true
   },

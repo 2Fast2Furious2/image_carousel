@@ -3,9 +3,17 @@ FROM 'C:\sampledb\persons.csv'
 DELIMITER ','
 CSV HEADER;
 
+
+\timing (turns on query time measurement)
+
+
+SELECT *
+FROM place
+WHERE id=539225;
+
 SELECT *
 FROM relatedplaces
-WHERE primaryplaceid=101;
+WHERE primaryplaceid=8675309;
 
 COPY place(id, place_name, place_description, avgrating, numberofratings, place_image, rate, wasliked, posteddate, longitude, latitude, category, superhost)
 FROM '/Users/danieldepaoli/Desktop/HRSeniorProjects/image_carousel/csvdata/10mpostgresdata.csv'
@@ -32,3 +40,9 @@ client.query('SELECT NOW()', (err, res) => {
   console.log(err, res)
   client.end()
 })
+
+CREATE INDEX place_id_index ON place (id);
+
+CREATE INDEX relatedplaces_primaryplaceid_index ON relatedplaces (primaryplaceid);
+
+SELECT pg_size_pretty( pg_database_size('moreplacestostay') );
