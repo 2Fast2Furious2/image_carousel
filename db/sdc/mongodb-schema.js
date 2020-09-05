@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://database/suggestedListings', { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/gallery", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -37,7 +40,6 @@ const placesSchema = new mongoose.Schema({
 
 });
 
-//csv with giant stringified array and write a mongo command in javascript that will turn the stringified arrays into actual arrays or directly import to mongo with the driver (quotes in a csv avoid commas)
 
 const likedListSchema = new mongoose.Schema({
 
@@ -49,6 +51,6 @@ const likedListSchema = new mongoose.Schema({
 });
 
 
-const Listing = mongoose.model('Listing', listingSchema);
+const Listing = mongoose.model('listings', placesSchema);
 
 module.exports = Listing;

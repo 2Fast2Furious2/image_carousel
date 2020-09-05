@@ -7,9 +7,9 @@ const model = require('../db/model.js');
 const app = express();
 app.use(compression());
 
-const PORT = 3004;
-// app.use('/rooms/:room_id', express.static(path.join(__dirname, '../public')));
-app.use('/rooms/:room_id', expressStaticGzip(path.join(__dirname, '../public')));
+const PORT = 3011;
+app.use('/rooms/:room_id', express.static(path.join(__dirname, '../public')));
+// app.use('/rooms/:room_id', expressStaticGzip(path.join(__dirname, '../public')));
 
 app.get('/suggestedListings', (req, res) => {
   console.log('get req working!');
