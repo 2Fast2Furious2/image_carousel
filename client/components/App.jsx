@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
+import NewRelic from 'new-relic-agent-react'
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';

@@ -1,8 +1,10 @@
+// require('newrelic');
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
 const expressStaticGzip = require('express-static-gzip');
 const model = require('../db/model.js');
+
 
 const app = express();
 app.use(compression());

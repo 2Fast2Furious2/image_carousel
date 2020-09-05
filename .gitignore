@@ -15,7 +15,7 @@ logs
 lib-cov
 
 # New Relic credentials
-creds
+newrelic.js
 
 # Coverage directory used by tools like istanbul
 coverage
