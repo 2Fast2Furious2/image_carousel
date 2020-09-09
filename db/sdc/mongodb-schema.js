@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost/gallery", {
+mongoose.connect("mongodb://localhost/hrsfsdc", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -51,6 +51,6 @@ const likedListSchema = new mongoose.Schema({
 });
 
 
-const Listing = mongoose.model('listings', placesSchema);
+const Places = mongoose.model('places', placesSchema);
 
-module.exports = Listing;
+module.exports = Places;

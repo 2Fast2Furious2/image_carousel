@@ -1,4 +1,4 @@
-// require('newrelic');
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const compression = require('compression');
@@ -16,6 +16,20 @@ app.use('/rooms/:room_id', express.static(path.join(__dirname, '../public')));
 app.get('/suggestedListings', (req, res) => {
   console.log('get req working!');
   model.getListings((error, listings) => {
+    if (error) {
+      console.log('server down');
+      res.status(400).send(error);
+    } else {
+      console.log('GET received!');
+      res.status(200).send(listings);
+    }
+  });
+});
+
+//new
+app.get('/suggestedPlaces', (req, res) => {
+  console.log('get req working!');
+  model.getPlaces((error, listings) => {
     if (error) {
       console.log('server down');
       res.status(400).send(error);

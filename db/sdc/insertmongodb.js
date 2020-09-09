@@ -1,5 +1,7 @@
 mongoimport --type csv -d hrsfsdc -c places --headerline --drop mongodb.csv
 
+mongoimport --type json -d hrsfsdc -c places --drop mongodb.json
+
 –type: The input format to import: json, csv, or tsv. We are using csv so that’s what we specify.
 -d: Specifies what database to use. We used the test database.
 -c: Specifies what collection to use. We used a collection called products.
@@ -22,3 +24,18 @@ db.places.find().explain("executionStats")
 db.places.explain().find()
 db.places.explain("executionStats").find( { id: 8675309} })
 
+// scp transfer command
+
+// scp -i "xxx.pem" /Users/danieldepaoli/Desktop/HRSeniorProjects/image_carousel/csvdata/mongodb.json ec2-user@xxx.us-west-2.compute.amazonaws.com:mongodb.json
+
+db.places.aggregate([
+  {
+    $lookup:
+      {
+        from: "places",
+        localField: "relatedPlaces",
+        foreignField: "id",
+        as: "related_places"
+      }
+ }
+])
