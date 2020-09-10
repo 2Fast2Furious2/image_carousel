@@ -48,7 +48,7 @@ const Rating = (props) => (
       <OutOfFiveStars>{props.rating.avgRating}</OutOfFiveStars>
       {' '}
       <NumOfComments>
-        ({props.rating.numberOfRatings})
+        ({props.rating.numratings})
       </NumOfComments>
     </InnerWrapper>
   </OuterWrapper>
