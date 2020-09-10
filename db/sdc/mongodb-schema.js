@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://database/suggestedListings', { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/hrsfsdc", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -9,24 +12,34 @@ db.once('open', () => {
 
 const placesSchema = new mongoose.Schema({
 
-  placeID: Number,
+  id: {
+    type: Number,
+    required: true
+  },
   image: String,
   name: String,
   description: String,
   rate: Number,
   avgRating: Number,
-  numberOfRatings: Number,
+  numberOfRatings:  {
+    type: Number,
+    default: 0
+  },
   avgRating: Number,
   wasLiked: Boolean,
   posted: Date,
   longitude: String,
   latitude: String,
   category: String,
-  superhost: Boolean,
+  superhost: {
+    type: Boolean,
+    default: false
+  },
   placeURL: String,
   relatedPlaces: Array
 
 });
+
 
 const likedListSchema = new mongoose.Schema({
 
@@ -38,6 +51,6 @@ const likedListSchema = new mongoose.Schema({
 });
 
 
-const Listing = mongoose.model('Listing', listingSchema);
+const Places = mongoose.model('places', placesSchema);
 
-module.exports = Listing;
+module.exports = Places;

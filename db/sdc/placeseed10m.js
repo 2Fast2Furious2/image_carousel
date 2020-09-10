@@ -1,8 +1,6 @@
+
 const fs = require('fs');
-
-//db/sdc/seed.js
-
-
+const v8 = require('v8');
 
 const name = ['"The Foxes Den"', '"Riverfront Getaway"', '"The Real BatCave"', '"Luxury Treehouse in the Redwoods"', '"Modern Beach Pad"', '"Juju Town Retreat"', '"Sunny Bungalow"'];
 
@@ -36,7 +34,8 @@ const image = [
 'https://a0.muscache.com/4ea/air/v2/pictures/b143ebed-5987-4af7-85f4-b2af740978c0.jpg',
 'https://a0.muscache.com/4ea/air/v2/pictures/63d7a3af-2bbc-4a60-a017-69c707f44e5d.jpg',
 'https://a0.muscache.com/4ea/air/v2/pictures/e3bbe73a-28c8-433e-9321-a6037451833d.jpg',
-'https://a0.muscache.com/4ea/air/v2/pictures/a8394572-a7a7-4d5a-9fde-7e09e6e6172e.jpg', 'https://a0.muscache.com/4ea/air/v2/pictures/763979f5-b788-4eb0-86cf-b5b8e948e2f4.jpg',
+'https://a0.muscache.com/4ea/air/v2/pictures/a8394572-a7a7-4d5a-9fde-7e09e6e6172e.jpg',
+'https://a0.muscache.com/4ea/air/v2/pictures/763979f5-b788-4eb0-86cf-b5b8e948e2f4.jpg',
 'https://a0.muscache.com/4ea/air/v2/pictures/06045493-31f0-4583-9158-a9f556e708fd.jpg',
 'https://a0.muscache.com/4ea/air/v2/pictures/e5e58e85-6d76-46df-9258-291e8cc725b8.jpg',
 'https://a0.muscache.com/im/pictures/10675d61-25f6-4394-be7a-f81b3254508d.jpg',
@@ -58,44 +57,61 @@ const category = ['"Tree House"', '"House"', '"Duplex"', '"Mansion"', '"Boat"', 
 
 const superHost = [true, false];
 
-
-const seedData = (entries) => {
-
-  let dataString = 'id,name,description,avgRating,numratings,image,rate,wasLiked,postedDate,longitude,latitude,category,superHost\n';
-
-  for (let i = 1; i < entries; i++) {
-    dataString += `${i},`;
-    dataString += `${name[i % 6]},`;
-    dataString += `${description[i % 5]},`;
-    dataString += `${avgRating[i % 8]},`;
-    dataString += `${numratings[i % 6]},`;
-    dataString += `${image[i % 30]},`;
-    dataString += `${rate[i % 10]},`;
-    dataString += `${wasLiked[i % 2]},`;
-    dataString += `${postedDate[i % 4]},`;
-    dataString += `${longitude[i % 7]},`;
-    dataString += `${latitude[i % 6]},`;
-    dataString += `${category[i % 7]}`;
-    dataString += `${superHost[i % 2]},`;
-    dataString += `\n`;
-  }
-
-//wrap in quotes for csv -- system or code ways to get around v8 limit  break your table up into multiple files
-
-  return new Promise((resolve, reject) => {
-
-    fs.writeFile('csvdata/testdata.csv', dataString, (err, data) => {
-
-      if (err) {
-        reject(err)
-      } else {
-        resolve(data)
-      }
-    })
-  })
-
+const writeLine = () => {
+  return `Line!, Line!, Line!, Line!\n`
 }
 
-seedData(1000)
-.then( () => {console.log('Success')})
-.catch( () => {console.log('Error')})
+const checkMemoryNative = () => {
+  console.log("Memory Usage: ", process.memoryUsage())
+}
+
+const printHeapStats = () => {
+  console.log('Heap Status', v8.getHeapSpaceStatistics())
+}
+
+writeNTimes = (writer, min, max, callback) => {
+
+  const writeFile = () => {
+    let ok = true;
+
+
+    do {
+
+        var dataString = `${min},`;
+        dataString += `${name[min % 6]},`;
+        dataString += `${description[min % 5]},`;
+        dataString += `${avgRating[min % 8]},`;
+        dataString += `${numratings[min % 6]},`;
+        dataString += `${image[min % 30]},`;
+        dataString += `${rate[min % 10]},`;
+        dataString += `${wasLiked[min % 2]},`;
+        dataString += `${postedDate[min % 4]},`;
+        dataString += `${longitude[min % 7]},`;
+        dataString += `${latitude[min % 6]},`;
+        dataString += `${category[min % 7]},`;
+        dataString += `${superHost[min % 2]}`;
+        dataString += `\n`;
+
+      if (min % max === 0) {
+
+        writer.write(dataString, 'utf-8', callback);
+      } else {
+        ok = writer.write(dataString, 'utf-8')
+      }
+      min++;
+    } while (min <= max && ok);
+    if (min <= max) {
+      writer.once('drain', writeFile)
+    }
+  }
+  writeFile();
+}
+
+
+const writeStream = fs.createWriteStream('./csvdata/10mpostgresdata.csv')
+
+const line1 = 'id,name,description,avgRating,numratings,image,rate,wasLiked,postedDate,longitude,latitude,category,superHost\n';
+writeStream.write(line1);
+writeNTimes(writeStream, 1, 10000000, ()=>{
+  console.log('written!')
+})

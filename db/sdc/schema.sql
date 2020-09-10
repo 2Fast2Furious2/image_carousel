@@ -1,50 +1,58 @@
 
-DROP DATABASE IF EXISTS morePlacesToStay;
+DROP DATABASE IF EXISTS moreplacestostay;
 
-CREATE DATABASE morePlacesToStay;
+CREATE DATABASE moreplacestostay;
 
-SELECT morePlacesToStay;
+\c moreplacestostay;
 
 CREATE TABLE place (
-  id int NOT NULL AUTO_INCREMENT,
-  place_name varchar(255) NOT NULL,
-  place_description varchar(255) NOT NULL,
-  avgRating decimal(10, 2) NOT NULL,
-  numberOfRatings int NOT NULL,
-  place_image varchar(255) NOT NULL,
-  rate decimal(10, 2) NOT NULL,
-  wasLiked boolean NOT NULL,
-  postedDate date NOT NULL,
-  longitude varchar(255) NOT NULL,
-  latitude varchar(255) NOT NULL,
-  category varchar(255) NOT NULL,
-  superhost boolean NOT NULL,
-  PRIMARY KEY (ID)
+  id SERIAL PRIMARY KEY,
+  place_name varchar(255),
+  place_description varchar(255),
+  avgrating decimal(10, 2),
+  numberofratings int,
+  place_image varchar(255),
+  rate decimal(10, 2),
+  wasliked boolean,
+  posteddate varchar(255),
+  longitude varchar(255),
+  latitude varchar(255),
+  category varchar(255),
+  superhost boolean
 );
 
 
-CREATE TABLE relatedPlaces (
-  primaryPlaceID int NOT NULL,
-  relatedPlaceID int NOT NULL,
-  -- PRIMARY KEY (ID)
-  -- foreign key(placeID) references places(id)
+CREATE TABLE relatedplaces (
+  primaryplaceid int,
+  relatedplaceid int
+-- CONSTRAINT fk_place
+--       FOREIGN KEY(primaryplaceid, relatedplaceid)
+-- 	  REFERENCES place(id, id)
+--   foreign key(placeid) references places(id)
 );
 
-CREATE TABLE likedList (
-  id int NOT NULL AUTO_INCREMENT,
+-- altertable to add a constraint
+
+CREATE TABLE likedlist (
+  id SERIAL PRIMARY KEY,
   -- placeID int NOT NULL,
-  listName varchar(255) NOT NULL,
-  list_image varchar(255) NOT NULL,
-  list_dates varchar(255) NOT NULL,
-  PRIMARY KEY (ID)
-  -- foreign key(placeID) references places(id)
+  listname varchar(255),
+  list_image varchar(255),
+  list_dates varchar(255)
+  -- foreign key(placeid) references places(id)
 );
 
-CREATE TABLE listPlaceAssociation (
-  listID int NOT NULL,
-  placeID int NOT NULL
+CREATE TABLE listplaceassociation (
+  listid int,
+  placeid int
   -- foreign key(placeID) references places(id)
   -- foreign key(listID) references likedList(id)
+  --   CONSTRAINT fk_placeslist
+  --     FOREIGN KEY(listid)
+	--   REFERENCES likedlist(id),
+  -- CONSTRAINT fk_places
+  --     FOREIGN KEY(placeid)
+	--   REFERENCES place(id)
 );
 
 --compund indexing for lists
@@ -63,9 +71,19 @@ CREATE TABLE listPlaceAssociation (
 
 /*  Execute this file from the command line by typing:
 --  *    mysql -u root < schema.sql
+
+psql -f db/sdc/schema.sql
+
  *  to create the database and the tables.*/
 
 /* For the record, these numbers were generated with Math.random,
  * please don't read into them. :) */
 
+
+-- COPY place(id, place_name, place_description, avgrating, numberofratings, place_image, rate, wasliked, posteddate, longitude, latitude, category, superhost)
+-- FROM '/Users/danieldepaoli/Desktop/HRSeniorProjects/image_carousel/csvdata/10mpostgresdata.csv'
+-- DELIMITER ','
+-- CSV HEADER;
+
+-- \timing on
 
