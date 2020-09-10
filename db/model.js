@@ -13,17 +13,17 @@ const Places = require('./sdc/mongodb-schema.js');
 module.exports = {
 
 
-  getPlace: (callback) => {
-    Places.find({ "id": placeid }, (error, listings) => {
-      if (error) {
-        console.log('cannot search database');
-        callback(error);
-      } else {
-        console.log('database searched');
-        callback(null, listings);
-      }
-    });
-  },
+  // getPlace: (callback) => {
+  //   Places.find({ "id": placeid }, (error, listings) => {
+  //     if (error) {
+  //       console.log('cannot search database');
+  //       callback(error);
+  //     } else {
+  //       console.log('database searched');
+  //       callback(null, listings);
+  //     }
+  //   });
+  // },
 
 
   getPlaces: (callback) => {
@@ -39,13 +39,13 @@ module.exports = {
           as: "related_place"
         }
       }
-    ], (error, listings) => {
+    ], (error, places) => {
         if (error) {
           console.log('cannot search database');
           callback(error);
         } else {
           console.log('database searched');
-          callback(null, listings);
+          callback(null, places);
         }
       })
   },

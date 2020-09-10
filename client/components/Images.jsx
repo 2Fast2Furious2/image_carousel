@@ -72,7 +72,7 @@ class Images extends React.Component {
           <Heart
             heart={this.props.graphics}
             modal={this.props.modal}
-            liked={this.props.liked}
+            liked={this.props.wasLiked}
           />
         </InnerWrapper>
         <ListingImage alt="" src={this.props.graphics.image} />

@@ -32,7 +32,7 @@ const Wrapper = styled.div`
 const Listing = (props) => (
   <Wrapper>
     <List>
-      <SpaceAvailable>{props.listing.title}</SpaceAvailable>
+      <SpaceAvailable>{props.listing.name}</SpaceAvailable>
     </List>
   </Wrapper>
 );

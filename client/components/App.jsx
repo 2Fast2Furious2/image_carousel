@@ -71,9 +71,10 @@ class App extends React.Component {
   }
 
   getListings() {
-    axios.get('/suggestedListings')
+    // axios.get('/suggestedListings')
+    axios.get('/suggestedPlaces')
       .then((response) => {
-        const suggestedListings = response.data;
+        const suggestedListings = response.data[0].related_place;
         console.log(suggestedListings);
         this.setState({ suggestedListings, isLoading: false });
         this.renderPage(1);
