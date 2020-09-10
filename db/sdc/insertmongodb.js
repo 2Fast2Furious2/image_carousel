@@ -16,8 +16,7 @@ db.runCommand( {
   dbStats: 1,
 } )
 
-db.places.find( { id: 8675309 } )
-db.places.find( { id: 8675309 }).explain("executionStats")
+db.places.find( { id: 467834 } )
 
 db.places.find().explain("executionStats")
 
@@ -26,16 +25,54 @@ db.places.explain("executionStats").find( { id: 8675309} })
 
 // scp transfer command
 
-// scp -i "xxx.pem" /Users/danieldepaoli/Desktop/HRSeniorProjects/image_carousel/csvdata/mongodb.json ec2-user@xxx.us-west-2.compute.amazonaws.com:mongodb.json
+// scp -i "xxxx.pem" /Users/danieldepaoli/Desktop/HRSeniorProjects/image_carousel/csvdata/mongodb.json xxxx.us-west-2.compute.amazonaws.com:mongodb.json
+
+
 
 db.places.aggregate([
+  { $match: { id: 46792444 } },
   {
     $lookup:
       {
         from: "places",
         localField: "relatedPlaces",
         foreignField: "id",
-        as: "related_places"
+        as: "related_place"
       }
  }
 ])
+
+db.places.explain("executionStats").aggregate([
+  { $match: { id: 4466883 } },
+  {
+    $lookup:
+      {
+        from: "places",
+        localField: "relatedPlaces",
+        foreignField: "id",
+        as: "related_place"
+      }
+ }
+])
+
+db.places.find( { id: 467834 } ).aggregate([
+  {
+    $lookup:
+      {
+        from: "places",
+        localField: "relatedPlaces",
+        foreignField: "id",
+        as: "related_place"
+      }
+ }
+])
+
+{
+  $lookup:
+    {
+      from: "places",
+      localField: "relatedPlaces",
+      foreignField: "id",
+      as: "related_place"
+    }
+}

@@ -1,16 +1,20 @@
 /* eslint-disable array-callback-return */
-const Listing = require('./index.js');
+// const Listing = require('./index.js');
 const Places = require('./sdc/mongodb-schema.js');
+
+//change vack to index.js to fix ui
 
 // ./index.js
 // ./sdc/mongodb-schema.js
 
 
-var placeid = Math.floor(Math.random()*10000);
+var placeid = Math.floor(Math.random() * 10000);
 
 module.exports = {
+
+
   getPlaces: (callback) => {
-    Places.find( { "id": placeid }, (error, listings) => {
+    Places.find({ "id": placeid }, (error, listings) => {
       if (error) {
         console.log('cannot search database');
         callback(error);
@@ -20,6 +24,31 @@ module.exports = {
       }
     });
   },
+
+
+
+  // getPlaces: (callback) => {
+  //   Places.find( { "id": placeid } ).aggregate([
+  //     {
+  //       $lookup:
+  //         {
+  //           from: "places",
+  //           localField: "relatedPlaces",
+  //           foreignField: "id",
+  //           as: "related_place"
+  //         }
+  //    }
+  //   ], (error, listings) => {
+  //     if (error) {
+  //       console.log('cannot search database');
+  //       callback(error);
+  //     } else {
+  //       console.log('database searched');
+  //       callback(null, places);
+  //     }
+  //   });
+  // },
+
 
   getListings: (callback) => {
     Listing.find((error, listings) => {
