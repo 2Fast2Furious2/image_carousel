@@ -27,7 +27,7 @@ app.get('/suggestedListings', (req, res) => {
 });
 
 
-app.get('/loaderio-91fd5d4e9dc1ed84632c63b4dc2213e3', (req, res) => {
+app.get('/loaderio-4624791132dd078a648b8612f7bf1b05', (req, res) => {
   console.log('get loader io route working!');
   model.getPlaces((error, listings) => {
     if (error) {

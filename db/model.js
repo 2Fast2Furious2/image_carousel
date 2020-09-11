@@ -50,7 +50,9 @@ module.exports = {
       })
   },
 
-
+  loader: (callback) => {
+    return "loaderio-4624791132dd078a648b8612f7bf1b05";
+  },
 
   getListings: (callback) => {
     Listing.find((error, listings) => {
