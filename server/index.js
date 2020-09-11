@@ -26,6 +26,20 @@ app.get('/suggestedListings', (req, res) => {
   });
 });
 
+
+app.get('/loaderio-91fd5d4e9dc1ed84632c63b4dc2213e3', (req, res) => {
+  console.log('get loader io route working!');
+  model.getPlaces((error, listings) => {
+    if (error) {
+      console.log('server down');
+      res.status(400).send(error);
+    } else {
+      console.log('GET received!');
+      res.status(200).send(listings);
+    }
+  });
+});
+
 //new
 app.get('/suggestedPlaces', (req, res) => {
   console.log('get req working!');

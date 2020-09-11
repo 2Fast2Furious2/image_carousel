@@ -44,6 +44,8 @@ db.places.aggregate([
 // scp -i "xxxx.pem" /Users/danieldepaoli/Desktop/HRSeniorProjects/image_carousel/csvdata/mongodb.json xxxx.us-west-2.compute.amazonaws.com:mongodb.json
 
 
+scp -i "HRSF129FEC.pem" /Users/danieldepaoli/Desktop/HRSeniorProjects/image_carousel/newrelic.js ec2-user@ec2-34-222-226-196.us-west-2.compute.amazonaws.com:image_carousel/newrelic.js
+
 
 db.places.aggregate([
   { $match: { id: 49986 } },
