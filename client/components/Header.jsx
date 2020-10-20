@@ -21,7 +21,7 @@ const Section = styled.section`
 
 const Header = () => (
   <Section>
-    <Heading>More places to stay</Heading>
+    <Heading>Places to stay</Heading>
   </Section>
 );
 
