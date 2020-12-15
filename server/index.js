@@ -5,7 +5,7 @@ const compression = require('compression');
 const expressStaticGzip = require('express-static-gzip');
 const model = require('../db/model.js');
 
-app.use('/loaderio-91fd5d4e9dc1ed84632c63b4dc2213e3.txt', express.static(path.join(__dirname, '../loaderio-91fd5d4e9dc1ed84632c63b4dc2213e3.txt')));
+// app.use('/loaderio-91fd5d4e9dc1ed84632c63b4dc2213e3.txt', express.static(path.join(__dirname, '../loaderio-91fd5d4e9dc1ed84632c63b4dc2213e3.txt')));
 
 const app = express();
 app.use(compression());

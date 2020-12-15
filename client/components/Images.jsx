@@ -27,6 +27,11 @@ const ListingImage = styled.img`
   height: 100%;
   width: 100%;
   object-fit: cover;
+  :hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.18);
+    transition: box-shadow 0.2s ease 0s;
+  }
 `;
 
 const OuterWrapper = styled.div`
